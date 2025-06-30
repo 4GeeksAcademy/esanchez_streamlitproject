@@ -3,11 +3,11 @@ import pandas as pd
 from utils import predict_flores
 
 # Título de la aplicación
-st.title('Predicción manual de flores')
+st.title('Suma de los pétalos')
 st.image('iris.jpg', caption='Imagen de iris', use_column_width=True)
 
 # Texto introductorio
-st.write('**Ingresa los datos manualmente para realizar la predicción de la flor:**')
+st.write('**Ingresa los datos manualmente para realizar la suma de los pétalos de las flores:**')
 
 # Diccionario para almacenar los datos de entrada
 input_data = {}
@@ -15,19 +15,28 @@ input_data = {}
 # Lista de columnas para las características de la flor
 columns = ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
 
-# Bucle para recorrer las columnas y obtener los datos de entrada
-for col in columns:
-    # Widget de entrada numérica para cada característica
-    input_data[col] = st.number_input(col, value=0.0)
+col1, col2, col3, col4 = st.columns(4)
+with col1: 
+    st.markdown('Pétalos de la flor 1')
+    input_data[columns[0]] = st.number_input(columns[0], value=0.0, key=columns[0])
 
-# Botón para realizar la predicción
+with col2: 
+    st.markdown('Pétalos de la flor 2')
+    input_data[columns[1]] = st.number_input(columns[1], value=0.0, key=columns[1])
+
+with col3: 
+    st.markdown('Pétalos de la flor 3')
+    input_data[columns[2]] = st.number_input(columns[2], value=0.0, key=columns[2])
+
+with col4: 
+    st.markdown('Pétalos de la flor 4')
+    input_data[columns[3]] = st.number_input(columns[3], value=0.0, key=columns[3])
+
 if st.button('Realizar Predicción'):
-    # Convertir el diccionario de entrada a un DataFrame de una sola fila
     input_df = pd.DataFrame([input_data])
-
-    # Realizar la predicción utilizando la función predict_flores
     predicted_value = predict_flores(input_df)
 
-    # Mostrar el resultado de la predicción
-    st.success('Éxito al realizar la predicción!')
-    st.write('El resultado de la predicción es:', predicted_value[0])
+    total_petal_value = sum(input_data.values())
+
+    st.success('Éxito al hacer la suma!')
+    st.markdown(f"Suma total de pétalos: `{total_petal_value}`")
