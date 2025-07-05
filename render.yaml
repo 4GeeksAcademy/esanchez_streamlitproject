@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: streamlit
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run streamlit_tutorial.py
+    pythonVersion: 3.10
