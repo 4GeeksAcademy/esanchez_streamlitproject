@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
-from utils import predict_imagen
 
 # Título de la aplicación
 st.title('Adivina tu imagen')
